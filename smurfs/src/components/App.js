@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getSmurf } from '../actions';
 import "./App.css";
 import AddSmurfForm from "./AddSmurfForm";
+import SmurfList from "./SmurfList";
 
 const App =({ getSmurf, isFetching }) => {
   useEffect(() => {
@@ -13,7 +14,6 @@ const App =({ getSmurf, isFetching }) => {
   if (isFetching) {
     return <h2>Fetching a smurf for you!</h2>;
   }
-
   return (
     <div className="App">
       <h1>SMURFS! 2.0 W/ Redux</h1>
@@ -21,6 +21,7 @@ const App =({ getSmurf, isFetching }) => {
       <div>Start inside of your `src/index.js` file!</div>
       <div>Have fun!</div>
       <AddSmurfForm />
+      <SmurfList />
     </div>
   );
 }

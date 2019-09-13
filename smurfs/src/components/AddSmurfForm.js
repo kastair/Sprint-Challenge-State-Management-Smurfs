@@ -1,17 +1,32 @@
 import React, { useState } from "react";
 import { connect } from 'react-redux';
+import { postSmurfData } from '../actions';
 import "./App.css";
 
-const AddSmurfForm = () => {
-    const [inputValue, setInputValue] = useState("");
+const AddSmurfForm = ({ postSmurfData }) => {
+    const [inputNameValue, setNameInputValue] = useState("");
+    const [inputAgeValue, setAgeInputValue] = useState("");
+    const [inputHeightValue, setHeightInputValue] = useState("");
 
     const handleSubmit = e => {
         e.preventDefault();
+        postSmurfData(inputNameValue, inputAgeValue, inputHeightValue)
+        console.log(inputNameValue, inputAgeValue, inputHeightValue);
     }
 
-    const changeHandler = e => {
-        setInputValue(e.target.value);
-        console.log(inputValue);
+    const changeNameHandler = e => {
+        setNameInputValue(e.target.value);
+        console.log(inputNameValue);
+    };
+
+    const changeAgeHandler = e => {
+        setAgeInputValue(e.target.value);
+        console.log(inputAgeValue);
+    };
+
+    const changeHeightHandler = e => {
+        setHeightInputValue(e.target.value);
+        console.log(inputHeightValue);
     };
     return (
         <>
@@ -20,25 +35,19 @@ const AddSmurfForm = () => {
                 <input
                     type='text'
                     name='name'
-                    onChange={changeHandler}
+                    onChange={changeNameHandler}
                 />
                 <p>Enter smurf age:</p>
                 <input
                     type='text'
                     name='age'
-                    onChange={changeHandler}
+                    onChange={changeAgeHandler}
                 />
                 <p>Enter smurf height:</p>
                 <input
                     type='text'
                     name='height'
-                    onChange={changeHandler}
-                />
-                <p>Enter smurf id:</p>
-                <input
-                    type='text'
-                    name='id'
-                    onChange={changeHandler}
+                    onChange={changeHeightHandler}
                 />
                 <div className="submit-btn">
                     <button type='submit'>Add Smurf</button>
@@ -50,5 +59,5 @@ const AddSmurfForm = () => {
 
 export default connect(
     null,
-    {}
+    { postSmurfData }
 )(AddSmurfForm);

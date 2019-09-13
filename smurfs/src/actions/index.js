@@ -24,3 +24,12 @@ export const getSmurf = () => dispatch => {
             console.log(err);
         });
 };
+
+export const postSmurfData = (inputNameValue, inputAgeValue, inputHeightValue) => dispatch => {
+    axios
+        .post('http://localhost:3333/smurfs', {name: inputNameValue, age: inputAgeValue, height: inputHeightValue})
+        .then((res) => {
+            dispatch({ type: FETCHING_SMURF_SUCCESS, payload: res.data });
+            console.log(res.data);
+        })
+}
